@@ -111,17 +111,17 @@ app.post('/forgot-password', async (req, res) => {
     const otp = generateOTP();
     const token = jwt.sign({ email, otp }, JWT_SECRET_KEY, { expiresIn: '365d' });
 
-    // Send OTP to user's email
+    // Send OTP to user's email make sure to use service mail credentials here
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'credentialsmailservicereset@gmail.com',
-        pass: 'stgf hsut lona oygm',
+        user: 'use your mail',
+        pass: 'use you password',
       },
     });
 
     const mailOptions = {
-      from: 'credentialsmailservicereset@gmail.com',
+      from: 'your service mail',
       to: email,
       subject: 'Password Reset OTP',
       text: `Your OTP for password reset is: ${otp}`,
